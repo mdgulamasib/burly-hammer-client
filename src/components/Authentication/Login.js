@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../firebase.init'
 import Loading from '../Shared/Loading';
+import GoogleSignIn from './GoogleSignIn';
 
 
 const Login = () => {
@@ -33,9 +34,10 @@ const Login = () => {
     if (user) {
         navigate(from, { replace: true });
     }
+    console.log(error)
 
     if (error) {
-        errorElement = <p className='text-danger'>Error: {error?.message}</p>
+        errorElement = <p className='text-red-700 text-sm'>{error?.message}</p>
     }
 
 
@@ -76,7 +78,7 @@ const Login = () => {
         }
     }
 
-
+    console.log(user)
 
     return (
         <div className='mx-auto'>
@@ -94,18 +96,19 @@ const Login = () => {
                             Password
                         </label>
                         <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="*************" ref={passwordRef} required />
+                        {errorElement}
                     </div>
-                    <div class="flex items-center justify-between">
+                    <div class="flex items-center">
                         <button class="bg-primary uppercase hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" >
                             Sign In
                         </button>
-                        <small class="inline-block align-baseline  text-sm text-blue-500 hover:text-blue-800 uppercase cursor-pointer" onClick={resetPassword}> Forgot Password ?</small>
+                        <small class="inline-block align-baseline  text-sm text-blue-500 hover:text-blue-800 uppercase cursor-pointer pl-10" onClick={resetPassword}>Forgot Password ?</small>
                     </div>
                     <p>Don't have an account? <span className='inline-block align-baseline text-sm text-blue-500 hover:text-blue-800 uppercase cursor-pointer' onClick={navigateRegister}>Click to Register</span></p>
                 </form>
-
+                <div class="divider font-bold">OR</div>
+                <GoogleSignIn></GoogleSignIn>
             </div>
-            {errorElement}
         </div>
     );
 };
