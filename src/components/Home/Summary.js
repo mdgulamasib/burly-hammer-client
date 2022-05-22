@@ -37,16 +37,16 @@ const Summary = () => {
     });
 
     return (
-        <div style={{ "background-image": `url(${bgimg})` }}>
+        <div style={{ "backgroundImage": `url(${bgimg})` }}>
 
 
             <div className='text-white md:flex gap-8 items-center'>
-                <div className='grid grid-cols-1 p-10'>
-                    <h5 className='text-xl font-bold text-primary'>Burly Corporation</h5>
+                <div className='grid grid-cols-1 p-10 md:w-3/5'>
+                    <h5 className='text-3xl font-bold text-primary'>Burly Corporation</h5>
                     <small className='font-bold'>Trusted heavy tools manufacturer</small>
-                    <p>We are now one of the largest heavy tools manufacturer in the world supplying tools in more than 89 countries</p>
+                    <p className=' text-justify'>We are now one of the largest heavy tools manufacturer in the world supplying tools in more than 89 countries. We won 17 national and international Awards, and making 30M+ revenues every year. The thing made us proud is 3771+ global happy client in recent year.</p>
                 </div>
-                <div className='grid md:grid-cols-2 gap-4 p-10'>
+                <div className='grid md:grid-cols-2 gap-4 px-10'>
                     <div className='md:p-4 md:m-4 text-center'>
                         <p className='text-3xl  font-bold text-primary text-center'>
                             <span ref={countUpRef}></span>
