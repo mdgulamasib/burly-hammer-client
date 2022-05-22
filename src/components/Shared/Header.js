@@ -7,7 +7,7 @@ const Header = () => {
         <li><Link to="/products">All Products</Link></li>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/">Home</Link></li>
+        <li><Link to="/login">Login</Link></li>
     </>
     return (
         <div className="navbar mx-auto px-12 bg-base-300">
