@@ -4,6 +4,7 @@ import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import google_icon from '../../images/google_icon.png'
 import Loading from '../Shared/Loading';
+import useToken from '../../hooks/useToken';
 const GoogleSignIn = () => {
     const navigate = useNavigate();
     const location = useLocation();
@@ -14,6 +15,7 @@ const GoogleSignIn = () => {
 
 
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+    const [token] = useToken(user);
 
     if (loading) {
         return <Loading></Loading>
@@ -24,7 +26,7 @@ const GoogleSignIn = () => {
     }
 
 
-    if (user) {
+    if (token) {
         navigate(from, { replace: true });
     }
 

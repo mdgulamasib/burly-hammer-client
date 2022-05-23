@@ -5,6 +5,7 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-fireb
 import { useSendEmailVerification } from 'react-firebase-hooks/auth';
 import GoogleSignIn from '../Authentication/GoogleSignIn';
 import Loading from '../Shared/Loading';
+import useToken from '../../hooks/useToken';
 
 const Registration = () => {
     const nameRef = useRef('')
@@ -25,12 +26,13 @@ const Registration = () => {
     const [updateProfile, updating] = useUpdateProfile(auth);
 
     const [sendEmailVerification] = useSendEmailVerification(auth);
+    const [token] = useToken(user);
 
     if (loading || updating) {
         return <Loading></Loading>
     }
 
-    if (user) {
+    if (token) {
         navigate(from, { replace: true });
     }
     if (error) {

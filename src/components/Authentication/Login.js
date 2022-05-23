@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../firebase.init'
 import Loading from '../Shared/Loading';
 import GoogleSignIn from './GoogleSignIn';
+import useToken from '../../hooks/useToken';
 
 
 const Login = () => {
@@ -27,11 +28,13 @@ const Login = () => {
 
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
+    const [token] = useToken(user);
+
     if (loading || sending) {
         return <Loading></Loading>
     }
 
-    if (user) {
+    if (token) {
         navigate(from, { replace: true });
     }
     console.log(error)

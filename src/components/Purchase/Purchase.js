@@ -35,6 +35,7 @@ const Purchase = () => {
         const email = emailRef.current.value;
         const phone = phoneRef.current.value;
         const address = addressRef.current.value;
+        const productN = loadPurchase.name;
         const purchaseQ = orderQ;
         const totalPrice = orderQ * loadPurchase.price
         const paid = false
@@ -43,7 +44,7 @@ const Purchase = () => {
 
 
 
-        const order = { name, email, phone, address, purchaseQ, totalPrice, paid };
+        const order = { name, email, phone, address, productN, purchaseQ, totalPrice, paid };
 
         // send data to insert orders
         fetch('http://localhost:5000/orders', {
@@ -110,7 +111,7 @@ const Purchase = () => {
                                 <p>{loadPurchase.description}</p>
                                 <small>Available: {loadPurchase.availableQ}</small>
                                 <small>Minimum Order: {loadPurchase.minimumQ}</small>
-                                <p>Unit Price: <span className='text-primary font-bold'>{loadPurchase.price}$</span></p>
+                                <p>Unit Price: <span className='text-primary font-bold'>${loadPurchase.price}</span></p>
                             </div>
                         </div>
 

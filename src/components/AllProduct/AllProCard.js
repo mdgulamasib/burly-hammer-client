@@ -20,7 +20,7 @@ const AllProCard = ({ product }) => {
                 <p>{description}</p>
                 <small>Available: {availableQ}</small>
                 <small>Minimum Order: {minimumQ}</small>
-                <p>Unit Price: <span className='text-primary font-bold'>{price}$</span></p>
+                <p>Unit Price: <span className='text-primary font-bold'>${price}</span></p>
                 <div className="card-actions">
                     <button onClick={() => navigateToPurchase(_id)} className="btn btn-primary">Buy Now</button>
                 </div>
