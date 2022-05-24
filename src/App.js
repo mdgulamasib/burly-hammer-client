@@ -13,6 +13,11 @@ import Dashboard from './components/Dashboard/Dashboard';
 import MyProfile from './components/Dashboard/MyProfile';
 import MyOrder from './components/Dashboard/MyOrder';
 import AddReview from './components/Dashboard/AddReview';
+import AllUsers from './components/Dashboard/AllUsers';
+import AddProduct from './components/Dashboard/AddProduct';
+import ManageAllProducts from './components/Dashboard/ManageAllProducts';
+import ManageAllOrders from './components/Dashboard/ManageAllOrders';
+import RequireAdmin from './components/Authentication/RequireAdmin';
 
 function App() {
   return (
@@ -29,6 +34,11 @@ function App() {
           <Route index element={<MyProfile></MyProfile>}></Route>
           <Route path='myorders' element={<MyOrder></MyOrder>}></Route>
           <Route path='addreview' element={<AddReview></AddReview>}></Route>
+
+          <Route path='allusers' element={<RequireAdmin><AllUsers></AllUsers></RequireAdmin>}></Route>
+          <Route path='addproduct' element={<RequireAdmin><AddProduct></AddProduct></RequireAdmin>}></Route>
+          <Route path='manageallorders' element={<RequireAdmin><ManageAllOrders></ManageAllOrders></RequireAdmin>}></Route>
+          <Route path='manageallproducts' element={<RequireAdmin><ManageAllProducts></ManageAllProducts></RequireAdmin>}></Route>
 
         </Route>
 
