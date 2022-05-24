@@ -10,6 +10,7 @@ const Purchase = () => {
     const phoneRef = useRef('');
     const addressRef = useRef('');
     const purchaseRef = useRef('');
+    const quantityRef = useRef('');
 
 
     const [user] = useAuthState(auth);
@@ -18,7 +19,8 @@ const Purchase = () => {
 
     const [loadPurchase, setLoadPurchase] = useState({});
     const [reload, setIsReload] = useState(true)
-    const totalPrice = orderQ * loadPurchase.price
+    const totalPrice = orderQ * loadPurchase.price || loadPurchase.price * loadPurchase.minimumQ
+
 
 
     useEffect(() => {
@@ -83,8 +85,13 @@ const Purchase = () => {
     const handleOrderQ = (event) => {
         setorderQ(event.target.value)
     }
+
+
+    const quantity = quantityRef.current.value;
+
+
     console.log(orderQ)
-    const enabled = loadPurchase.availableQ >= orderQ && orderQ >= loadPurchase.minimumQ;
+    const enabled = loadPurchase.availableQ >= quantity && quantity >= loadPurchase.minimumQ;
 
     if (loadPurchase.availableQ <= orderQ) {
         orderQError = <p className='text-red-700 text-sm'>Order quantity can't be bigger than available quantity {loadPurchase.availableQ}</p>
@@ -146,14 +153,14 @@ const Purchase = () => {
                                         <label className="block text-sm font-bold mb-2" for="email">
                                             Order Quantity
                                         </label>
-                                        <input className="shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline" id="purchaseQ" type="number" placeholder={`Min ${loadPurchase.minimumQ} max ${loadPurchase.availableQ}`} onChange={handleOrderQ} required />
+                                        <input className="shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline" id="purchaseQ" type="number" defaultValue={loadPurchase.minimumQ} placeholder={`Min ${loadPurchase.minimumQ} max ${loadPurchase.availableQ}`} onChange={handleOrderQ} ref={quantityRef} required />
                                         {orderQError}
                                     </div>
                                     <div className="mb-4">
                                         <label className="block text-sm font-bold mb-2" for="email">
                                             Total Price
                                         </label>
-                                        <input className="shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline" id="purchaseQ" type="number" ref={purchaseRef} placeholder={`${totalPrice}`} readOnly required />
+                                        <input className="shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline" id="purchaseQ" type="number" ref={purchaseRef} value={`${totalPrice}`} readOnly required />
                                     </div>
 
                                     <div className="flex items-center">
