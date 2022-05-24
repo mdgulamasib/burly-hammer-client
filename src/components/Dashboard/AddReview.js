@@ -26,7 +26,7 @@ const AddReview = () => {
                         name: data.name,
                         email: user.email,
                         job: data.job,
-                        ratings: data.specialty,
+                        ratings: parseInt(data.specialty),
                         text: data.text,
                         img: img
                     }
