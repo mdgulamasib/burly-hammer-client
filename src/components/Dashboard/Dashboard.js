@@ -11,10 +11,6 @@ const Dashboard = () => {
 
     const [user] = useAuthState(auth);
     const [admin] = useAdmin(user);
-    console.log("admin console", admin)
-
-
-
 
     return (
         <div className="drawer drawer-mobile my-10">
@@ -31,9 +27,9 @@ const Dashboard = () => {
 
 
                     {admin ? <>
+                        <li><Link to="/dashboard/manageallorders" className='uppercase'>Manage Orders</Link></li>
                         <li><Link to="/dashboard/allusers" className='uppercase'>Make Admin</Link></li>
                         <li><Link to="/dashboard/addproduct" className='uppercase'>Add Product</Link></li>
-                        <li><Link to="/dashboard/manageallorders" className='uppercase'>Manage Orders</Link></li>
                         <li><Link to="/dashboard/manageallproducts" className='uppercase'>Manage Products</Link></li>
                     </> : <>
 
