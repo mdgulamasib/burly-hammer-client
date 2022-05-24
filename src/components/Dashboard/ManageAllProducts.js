@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ManageAPCard from './ManageAPCard';
+
 
 const ManageAllProducts = () => {
     const [products, setProducts] = useState([]);
@@ -24,8 +24,6 @@ const ManageAllProducts = () => {
                 })
         }
     }
-
-
 
 
     return (
