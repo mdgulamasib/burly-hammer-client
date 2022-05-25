@@ -12,17 +12,15 @@ const ManageAllProducts = () => {
     }, [reload]);
 
     const handleItemDelete = id => {
-        const proceed = window.confirm('Deleting Items is Permanent! Think twice before pressing OK...');
-        if (proceed) {
-            const url = `http://localhost:5000/products/${id}`;
-            fetch(url, {
-                method: 'DELETE'
+        const url = `http://localhost:5000/products/${id}`;
+        fetch(url, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                setIsReload(!reload)
             })
-                .then(res => res.json())
-                .then(data => {
-                    setIsReload(!reload)
-                })
-        }
+
     }
 
 
@@ -43,12 +41,30 @@ const ManageAllProducts = () => {
                             <small>Minimum Order: {product.minimumQ}</small>
                             <p>Unit Price: <span className='text-primary font-bold'>${product.price}</span></p>
                             <div className="card-actions">
-                                <button onClick={() => handleItemDelete(product._id)} className="btn btn-primary">Delete</button>
+                                <label for="my-modal" class="btn btn-primary">Delete</label>
                             </div>
                         </div>
+
+                        <input type="checkbox" id="my-modal" class="modal-toggle" />
+                        <div class="modal modal-bottom sm:modal-middle">
+                            <div class="modal-box">
+                                <h3 class="font-bold text-lg">Are you sure about deleting this product?</h3>
+                                <p class="py-4">Deletion is permanent, you can't go reverse once the item is deleted. Select confirm to delete, or cancel the operation!!!</p>
+                                <div class="modal-action">
+                                    <label for="my-modal" class="btn" onClick={() => handleItemDelete(product._id)}>Confirm</label>
+                                    <label for="my-modal" class="btn">Cancel</label>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
+
                 ))}
             </div>
+
+
+
+
         </div>
     );
 }

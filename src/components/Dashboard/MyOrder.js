@@ -40,17 +40,15 @@ const MyOrder = () => {
 
 
     const handleItemDelete = id => {
-        const proceed = window.confirm('Deleting Items is Permanent! Think twice before pressing OK...');
-        if (proceed) {
-            const url = `http://localhost:5000/myorders/${id}`;
-            fetch(url, {
-                method: 'DELETE'
+        const url = `http://localhost:5000/myorders/${id}`;
+        fetch(url, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                setIsReload(!reload)
             })
-                .then(res => res.json())
-                .then(data => {
-                    setIsReload(!reload)
-                })
-        }
+
     }
 
 
@@ -77,17 +75,27 @@ const MyOrder = () => {
                             <td>${myOrder.totalPrice}</td>
                             <td>
                                 {(myOrder.totalPrice && !myOrder.paid) && <Link to={`/dashboard/payment/${myOrder._id}`}><button className='btn btn-xs btn-primary'>pay now</button></Link>}
-                                {(myOrder.totalPrice && !myOrder.paid) && <button className='btn btn-xs btn-primary mx-2' onClick={() => handleItemDelete(myOrder._id)}>Cancel</button>}
+                                {(myOrder.totalPrice && !myOrder.paid) && <label for="my-modal-3" class="btn btn-xs btn-primary mx-2">Delete</label>}
 
                                 {(myOrder.totalPrice && myOrder.paid) && <div>
                                     <p><span className='text-success'>Paid</span></p>
                                     <p>XID: <span className='text-success'>{myOrder.transactionId}</span></p>
                                 </div>}
+
+                                <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+                                <div class="modal modal-bottom sm:modal-middle">
+                                    <div class="modal-box">
+                                        <h3 class="font-bold text-lg">Are you sure about cancel this order?</h3>
+                                        <p class="py-4">Cancellation is permanent, you can't go reverse once the order is cancel. Select confirm to Confirm, or cancel the operation!!!</p>
+                                        <div class="modal-action">
+                                            <label for="my-modal-3" class="btn" onClick={() => handleItemDelete(myOrder._id)}>Confirm</label>
+                                            <label for="my-modal-3" class="btn">Cancel</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                         </tr>)
                     }
-
-
                 </tbody>
             </table>
         </div>

@@ -35,22 +35,33 @@ const ManageAllOrders = () => {
             }
         }
         fetchMyAPI()
-    }, [user?.email])
+    }, [reload])
 
 
 
     const handleItemDelete = id => {
-        const proceed = window.confirm('Deleting Items is Permanent! Think twice before pressing OK...');
-        if (proceed) {
-            const url = `http://localhost:5000/myorders/${id}`;
-            fetch(url, {
-                method: 'DELETE'
+
+        const url = `http://localhost:5000/myorders/${id}`;
+        fetch(url, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                setIsReload(!reload)
             })
-                .then(res => res.json())
-                .then(data => {
-                    setIsReload(!reload)
-                })
-        }
+
+    }
+    const handleItemShiped = id => {
+
+        const url = `http://localhost:5000/myorders/${id}`;
+        fetch(url, {
+            method: 'PUT'
+        })
+            .then(res => res.json())
+            .then(data => {
+                setIsReload(!reload)
+            })
+
     }
 
 
@@ -79,12 +90,28 @@ const ManageAllOrders = () => {
                             <td>
                                 {(!myOrder.ship && !myOrder.paid) && <button className='btn btn-xs btn-blue-400 mx-2'>unPaid</button>}
 
-                                {(!myOrder.ship && !myOrder.paid) && <button className='btn btn-xs btn-primary mx-2' onClick={() => handleItemDelete(myOrder._id)}>Delete</button>}
+                                {(!myOrder.ship && myOrder.paid) && <button className='btn btn-xs btn-blue-400 mx-2'>Paid</button>}
+
+                                {(!myOrder.ship && !myOrder.paid) && <label for="my-modal-2" class="btn btn-xs btn-primary mx-2">Delete</label>}
 
 
-                                {(myOrder.paid && !myOrder.ship) && <button className='btn btn-xs btn-primary mx-2'/*  onClick={() => handleItemShiped(myOrder._id)} */>Ship</button>}
+
+                                {(myOrder.paid && !myOrder.ship) && <button className='btn btn-xs btn-primary mx-2' onClick={() => handleItemShiped(myOrder._id)}>Ship</button>}
 
                                 {(myOrder.paid && myOrder.ship) && <button className='btn btn-xs btn-blue-400 mx-2'>Shipped</button>}
+
+
+                                <input type="checkbox" id="my-modal-2" class="modal-toggle" />
+                                <div class="modal modal-bottom sm:modal-middle">
+                                    <div class="modal-box">
+                                        <h3 class="font-bold text-lg">Are you sure about deleting this order?</h3>
+                                        <p class="py-4">Deletion is permanent, you can't go reverse once the order is deleted. Select confirm to delete, or cancel the operation!!!</p>
+                                        <div class="modal-action">
+                                            <label for="my-modal-2" class="btn" onClick={() => handleItemDelete(myOrder._id)}>Confirm</label>
+                                            <label for="my-modal-2" class="btn">Cancel</label>
+                                        </div>
+                                    </div>
+                                </div>
 
                             </td>
                         </tr>)
