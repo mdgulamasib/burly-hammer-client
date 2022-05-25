@@ -1,11 +1,9 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useQuery, useQueryErrorResetBoundary } from 'react-query';
 import { Link, Outlet } from 'react-router-dom';
 import auth from '../../firebase.init';
 import useAdmin from '../../hooks/useAdmin';
-import Loading from '../Shared/Loading';
-import MyProfile from './MyProfile';
+
 
 const Dashboard = () => {
 

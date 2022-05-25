@@ -38,15 +38,16 @@ const Purchase = () => {
         const phone = phoneRef.current.value;
         const address = addressRef.current.value;
         const productN = loadPurchase.name;
-        const purchaseQ = orderQ;
-        const totalPrice = orderQ * loadPurchase.price
+        const purchaseQ = quantityRef.current.value;
+        const totalPrice = purchaseQ * loadPurchase.price
         const paid = false
-
-        console.log(name, email, phone, address, purchaseQ, totalPrice, paid)
-
+        const ship = false
 
 
-        const order = { name, email, phone, address, productN, purchaseQ, totalPrice, paid };
+
+
+
+        const order = { name, email, phone, address, productN, purchaseQ, totalPrice, paid, ship };
 
         // send data to insert orders
         fetch('http://localhost:5000/orders', {
@@ -62,7 +63,7 @@ const Purchase = () => {
                 event.target.reset();
             })
 
-        const newAvailableQ = loadPurchase.availableQ - orderQ
+        const newAvailableQ = loadPurchase.availableQ - (orderQ || loadPurchase.minimumQ)
         const updateQ = { newAvailableQ };
 
         // sending data for updating available quantity

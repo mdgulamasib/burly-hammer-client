@@ -19,6 +19,9 @@ import ManageAllProducts from './components/Dashboard/ManageAllProducts';
 import ManageAllOrders from './components/Dashboard/ManageAllOrders';
 import RequireAdmin from './components/Authentication/RequireAdmin';
 import Payment from './components/Dashboard/Payment';
+import NotFound from './components/Shared/Notfound';
+import Blog from './components/Blog/Blog';
+import MyProtfolio from './components/Blog/MyProtfolio';
 
 function App() {
   return (
@@ -28,6 +31,8 @@ function App() {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
         <Route path='/products' element={<AllProducts></AllProducts>}></Route>
+        <Route path='/blogs' element={<Blog></Blog>}></Route>
+        <Route path='/portfolio' element={<MyProtfolio></MyProtfolio>}></Route>
         <Route path="/products/:id" element={<RequireAuth><Purchase></Purchase></RequireAuth>}></Route>
 
 
@@ -48,6 +53,7 @@ function App() {
 
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Registration></Registration>}></Route>
+        <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>
       <ToastContainer />

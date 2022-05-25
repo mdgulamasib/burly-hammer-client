@@ -8,6 +8,7 @@ const MyOrder = () => {
 
     const [user] = useAuthState(auth)
     const [myOrders, setMyOrder] = useState([]);
+    const [reload, setIsReload] = useState(true)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -34,7 +35,23 @@ const MyOrder = () => {
             }
         }
         fetchMyAPI()
-    }, [user?.email])
+    }, [reload])
+
+
+
+    const handleItemDelete = id => {
+        const proceed = window.confirm('Deleting Items is Permanent! Think twice before pressing OK...');
+        if (proceed) {
+            const url = `http://localhost:5000/myorders/${id}`;
+            fetch(url, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    setIsReload(!reload)
+                })
+        }
+    }
 
 
 
@@ -60,9 +77,11 @@ const MyOrder = () => {
                             <td>${myOrder.totalPrice}</td>
                             <td>
                                 {(myOrder.totalPrice && !myOrder.paid) && <Link to={`/dashboard/payment/${myOrder._id}`}><button className='btn btn-xs btn-primary'>pay now</button></Link>}
+                                {(myOrder.totalPrice && !myOrder.paid) && <button className='btn btn-xs btn-primary mx-2' onClick={() => handleItemDelete(myOrder._id)}>Cancel</button>}
+
                                 {(myOrder.totalPrice && myOrder.paid) && <div>
                                     <p><span className='text-success'>Paid</span></p>
-                                    <p>Transaction id: <span className='text-success'>{myOrder.transactionId}</span></p>
+                                    <p>XID: <span className='text-success'>{myOrder.transactionId}</span></p>
                                 </div>}
                             </td>
                         </tr>)
