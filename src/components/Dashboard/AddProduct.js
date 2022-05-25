@@ -115,6 +115,7 @@ const AddProduct = () => {
                             Available Quantity
                         </label>
                         <input
+                            min="0"
                             type="number"
                             placeholder="1234567890"
                             className="shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
@@ -135,6 +136,7 @@ const AddProduct = () => {
                             Minimum Order
                         </label>
                         <input
+                            min="0"
                             type="number"
                             placeholder="1234567890"
                             className="shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
@@ -155,6 +157,7 @@ const AddProduct = () => {
                             Unit Price
                         </label>
                         <input
+                            min="0"
                             type="number"
                             placeholder="1234567890"
                             className="shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
