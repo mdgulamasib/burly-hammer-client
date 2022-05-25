@@ -153,7 +153,7 @@ const Purchase = () => {
                                         <label className="block text-sm font-bold mb-2" for="email">
                                             Order Quantity
                                         </label>
-                                        <input className="shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline" id="purchaseQ" type="number" defaultValue={loadPurchase.minimumQ} placeholder={`Min ${loadPurchase.minimumQ} max ${loadPurchase.availableQ}`} onChange={handleOrderQ} ref={quantityRef} required />
+                                        <input className="shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline" id="purchaseQ" type="number" min="0" defaultValue={loadPurchase.minimumQ} placeholder={`Min ${loadPurchase.minimumQ} max ${loadPurchase.availableQ}`} onChange={handleOrderQ} ref={quantityRef} required />
                                         {orderQError}
                                     </div>
                                     <div className="mb-4">
