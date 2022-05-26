@@ -59,7 +59,6 @@ const ManageAllOrders = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setIsReload(!reload)
             })
 
@@ -78,7 +77,7 @@ const ManageAllOrders = () => {
                         <th>Product Name</th>
                         <th>Quantity</th>
                         <th>Amount</th>
-                        <th>Payment Status</th>
+                        <th>Action Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -97,7 +96,7 @@ const ManageAllOrders = () => {
 
 
 
-                                {(myOrder.paid && !myOrder.ship) && <button className='btn btn-xs btn-primary mx-2' onClick={() => handleItemShiped(myOrder._id)}>Ship</button>}
+                                {(myOrder.paid && !myOrder.ship) && <button className='btn btn-xs btn-primary mx-2' onClick={() => handleItemShiped(myOrder._id)}>Pending</button>}
 
                                 {(myOrder.paid && myOrder.ship) && <button className='btn btn-xs btn-blue-400 mx-2'>Shipped</button>}
 
