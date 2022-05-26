@@ -34,7 +34,7 @@ const Header = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">burly Logo Here</a>
+                <a className="btn btn-ghost normal-case text-xl">Burly Hammer Mfr</a>
             </div>
             <div className="navbar-end hidden lg:flex ">
                 <ul className="menu menu-horizontal p-0">

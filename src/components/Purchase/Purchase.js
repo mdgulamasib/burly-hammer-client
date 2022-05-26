@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { stringify } from '@firebase/util';
 
 const Purchase = () => {
     const { id } = useParams();
@@ -14,10 +15,13 @@ const Purchase = () => {
 
 
     const [user] = useAuthState(auth);
-    const [orderQ, setorderQ] = useState()
+    const [loadPurchase, setLoadPurchase] = useState({});
+    const [orderQ, setorderQ] = useState("")
     let orderQError;
 
-    const [loadPurchase, setLoadPurchase] = useState({});
+
+
+
     const [reload, setIsReload] = useState(true)
     const totalPrice = orderQ * loadPurchase.price || loadPurchase.price * loadPurchase.minimumQ
 
@@ -83,21 +87,27 @@ const Purchase = () => {
 
     }
 
+    const avail = parseInt(loadPurchase.availableQ)
+    const min = parseInt(loadPurchase.minimumQ)
+
     const handleOrderQ = (event) => {
         setorderQ(event.target.value)
     }
 
 
-    const quantity = quantityRef.current.value;
+
+
+
 
 
     console.log(orderQ)
-    const enabled = loadPurchase.availableQ >= quantity && quantity >= loadPurchase.minimumQ;
+    const enabled = avail >= (orderQ || min) && (orderQ || min) >= min;
 
-    if (loadPurchase.availableQ <= orderQ) {
+
+    if (avail < (orderQ || min)) {
         orderQError = <p className='text-red-700 text-sm'>Order quantity can't be bigger than available quantity {loadPurchase.availableQ}</p>
     }
-    else if (orderQ <= loadPurchase.minimumQ) {
+    else if ((orderQ || min) < min) {
         orderQError = <p className='text-red-700 text-sm'>Order quantity can't be less than minimum quantity {loadPurchase.minimumQ}</p>
     }
 
