@@ -6,13 +6,13 @@ const ManageAllProducts = () => {
     const [reload, setIsReload] = useState(true)
 
     useEffect(() => {
-        fetch("http://localhost:5000/products")
+        fetch("https://young-everglades-39818.herokuapp.com/products")
             .then((res) => res.json())
             .then((data) => setProducts(data));
     }, [reload]);
 
     const handleItemDelete = id => {
-        const url = `http://localhost:5000/products/${id}`;
+        const url = `https://young-everglades-39818.herokuapp.com/products/${id}`;
         fetch(url, {
             method: 'DELETE'
         })

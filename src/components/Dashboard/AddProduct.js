@@ -37,7 +37,7 @@ const AddProduct = () => {
 
                     //sending to database
 
-                    fetch('http://localhost:5000/products', {
+                    fetch('https://young-everglades-39818.herokuapp.com/products', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

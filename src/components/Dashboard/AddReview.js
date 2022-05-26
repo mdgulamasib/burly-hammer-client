@@ -33,7 +33,7 @@ const AddReview = () => {
 
                     //sending to database
 
-                    fetch('http://localhost:5000/reviews', {
+                    fetch('https://young-everglades-39818.herokuapp.com/reviews', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

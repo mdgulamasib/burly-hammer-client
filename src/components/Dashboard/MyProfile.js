@@ -17,7 +17,7 @@ const MyProfile = () => {
 
         async function fetchMyAPI() {
             const email = user?.email;
-            const url = `http://localhost:5000/myinfo?email=${email}`;
+            const url = `https://young-everglades-39818.herokuapp.com/myinfo?email=${email}`;
             try {
                 await fetch(url, {
                     headers: {
@@ -48,7 +48,7 @@ const MyProfile = () => {
         const updateItem = { number };
 
         // sending data for adding quantity
-        const url = `http://localhost:5000/number/${id}`;
+        const url = `https://young-everglades-39818.herokuapp.com/number/${id}`;
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -72,7 +72,7 @@ const MyProfile = () => {
         const image = { imgurl };
 
         // sending data for changing image
-        const url = `http://localhost:5000/img/${id}`;
+        const url = `https://young-everglades-39818.herokuapp.com/img/${id}`;
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -99,7 +99,7 @@ const MyProfile = () => {
         console.log(id, address)
 
         // sending data for changing image
-        const url = `http://localhost:5000/address/${id}`;
+        const url = `https://young-everglades-39818.herokuapp.com/address/${id}`;
         fetch(url, {
             method: 'PUT',
             headers: {

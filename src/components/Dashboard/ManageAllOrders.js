@@ -15,7 +15,7 @@ const ManageAllOrders = () => {
 
         async function fetchMyAPI() {
             const email = user?.email;
-            const url = `http://localhost:5000/allorders`;
+            const url = `https://young-everglades-39818.herokuapp.com/allorders`;
             try {
                 await fetch(url, {
                     headers: {
@@ -41,7 +41,7 @@ const ManageAllOrders = () => {
 
     const handleItemDelete = id => {
 
-        const url = `http://localhost:5000/myorders/${id}`;
+        const url = `https://young-everglades-39818.herokuapp.com/myorders/${id}`;
         fetch(url, {
             method: 'DELETE'
         })
@@ -53,12 +53,13 @@ const ManageAllOrders = () => {
     }
     const handleItemShiped = id => {
 
-        const url = `http://localhost:5000/myorders/${id}`;
+        const url = `https://young-everglades-39818.herokuapp.com/myorders/${id}`;
         fetch(url, {
             method: 'PUT'
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data)
                 setIsReload(!reload)
             })
 

@@ -11,8 +11,8 @@ const AllProCard = ({ product }) => {
     }
 
     return (
-        <div className="card w-96 bg-base-200 shadow-xl">
-            <figure className="px-10 pt-10">
+        <div className="card w-80 bg-base-200 shadow-xl">
+            <figure className="px-8 pt-8">
                 <img src={image} alt="Shoes" className="rounded-md" />
             </figure>
             <div className="card-body items-center text-center">

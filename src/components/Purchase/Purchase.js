@@ -28,7 +28,7 @@ const Purchase = () => {
 
 
     useEffect(() => {
-        const url = `http://localhost:5000/products/${id}`;
+        const url = `https://young-everglades-39818.herokuapp.com/products/${id}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setLoadPurchase(data));
@@ -54,7 +54,7 @@ const Purchase = () => {
         const order = { name, email, phone, address, productN, purchaseQ, totalPrice, paid, ship };
 
         // send data to insert orders
-        fetch('http://localhost:5000/orders', {
+        fetch('https://young-everglades-39818.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -71,7 +71,7 @@ const Purchase = () => {
         const updateQ = { newAvailableQ };
 
         // sending data for updating available quantity
-        const url = `http://localhost:5000/products/${id}`;
+        const url = `https://young-everglades-39818.herokuapp.com/products/${id}`;
         fetch(url, {
             method: 'PUT',
             headers: {

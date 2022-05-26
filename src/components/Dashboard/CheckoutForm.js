@@ -15,7 +15,7 @@ const CheckoutForm = ({ order }) => {
     const { _id, name, email, totalPrice } = order;
 
     useEffect(() => {
-        fetch('http://localhost:5000/create-payment-intent', {
+        fetch('https://young-everglades-39818.herokuapp.com/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -86,7 +86,7 @@ const CheckoutForm = ({ order }) => {
                 transactionId: paymentIntent.id
             }
             //changing paid status 
-            fetch(`http://localhost:5000/orders/${_id}`, {
+            fetch(`https://young-everglades-39818.herokuapp.com/orders/${_id}`, {
 
                 method: 'PATCH',
                 headers: {

@@ -15,7 +15,7 @@ const MyOrder = () => {
 
         async function fetchMyAPI() {
             const email = user?.email;
-            const url = `http://localhost:5000/myorders?email=${email}`;
+            const url = `https://young-everglades-39818.herokuapp.com/myorders?email=${email}`;
             try {
                 await fetch(url, {
                     headers: {
@@ -40,7 +40,7 @@ const MyOrder = () => {
 
 
     const handleItemDelete = id => {
-        const url = `http://localhost:5000/myorders/${id}`;
+        const url = `https://young-everglades-39818.herokuapp.com/myorders/${id}`;
         fetch(url, {
             method: 'DELETE'
         })

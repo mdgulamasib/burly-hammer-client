@@ -6,7 +6,7 @@ const Footer = () => {
             <div className="footer p-10 bg-base-300 text-base-content mx-auto">
                 <div>
                     <span className="footer-title text-lg text-base-800">Subscribe to  Newsletter</span>
-                    <div className="form-control w-80">
+                    <div className="form-control ">
                         <label className="label">
                             <span className="label-text">Enter your email address</span>
                         </label>
